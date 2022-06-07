@@ -12,26 +12,26 @@ export class ProjectService {
 
   getAllProjects()
   {
-    return this.httpClient.get(`${this.baseUrl}/project`);
+    return this.httpClient.get(`${this.baseUrl}/projects`);
   }
 
   getProjectById(id: any)
   {
-    return this.httpClient.get(`${this.baseUrl}/project/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/projects/${id}`);
   }
 
   createProject(payload: any)
   {
-    return this.httpClient.post(`${this.baseUrl}/project`, payload);
+    return this.httpClient.post(`${this.baseUrl}/projects`, payload);
   }
 
   updateProjectById(id: any, payload: any)
   {
-    return this.httpClient.put(`${this.baseUrl}/project/${id}`, payload);
+    return this.httpClient.put(`${this.baseUrl}/projects/${id}`, payload);
   }
 
   deleteProjectById(id: any)
   {
-    return this.httpClient.delete(`${this.baseUrl}/project/${id}`);
+    return this.httpClient.delete(`${this.baseUrl}/projects/${id}`);
   }
 }
