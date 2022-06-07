@@ -1,75 +1,36 @@
-import { SigninComponent } from './view/signin/signin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 // Import Containers
-import { DefaultLayoutComponent, EmailLayoutComponent } from './containers';
+import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'operator-dashboard',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
     path: '404',
-    component: P404Component,
-    data: {
-      title: 'Page 404',
-    },
+    component: P404Component
   },
   {
     path: '500',
-    component: P500Component,
-    data: {
-      title: 'Page 500',
-    },
+    component: P500Component
   },
   {
     path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page',
-    },
+    component: LoginComponent
   },
-  {
-    path: 'signin',
-    component: SigninComponent,
-    data: {
-      title: 'Login Page',
-    },
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page',
-    },
-  },
-  {
-    path: 'apps/email',
-    component: EmailLayoutComponent,
-
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./views/apps/email/email.module').then((m) => m.EmailModule),
-      },
-    ],
-  },
-
   {
     path: '',
     component: DefaultLayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data: {
-      title: 'Home',
+      title: 'Tableau de bord',
     },
     children: [
       {
@@ -166,6 +127,11 @@ export const routes: Routes = [
       { path: 'taches', loadChildren: () => import('./views/taches/taches.module').then(m => m.TachesModule) },
     ],
   },
+  {
+    path:'**',
+    redirectTo: '404',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

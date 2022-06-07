@@ -21,16 +21,12 @@ import { DefaultHeaderDropdownMessagesComponent } from './containers/default-lay
 import { DefaultHeaderDropdownNotificationsComponent } from './containers/default-layout/default-header-dropdown/default-header-dropdown-notifications.component';
 import { DefaultHeaderDropdownTasksComponent } from './containers/default-layout/default-header-dropdown/default-header-dropdown-tasks.component';
 import { DefaultAsideComponent } from './containers/default-layout/default-aside/default-aside.component';
-// Import email
-import { EmailLayoutComponent } from './containers';
-import { EmailHeaderComponent } from './containers/email-layout/email-header/email-header.component';
 
 // Import error pages
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 // Import pages
 import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent,
@@ -40,8 +36,6 @@ const APP_CONTAINERS = [
   DefaultHeaderDropdownNotificationsComponent,
   DefaultHeaderDropdownTasksComponent,
   DefaultAsideComponent,
-  EmailLayoutComponent,
-  EmailHeaderComponent,
 ];
 
 import {
@@ -79,7 +73,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SigninComponent } from './view/signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToasterModule } from 'angular2-toaster';
 
@@ -125,8 +118,6 @@ import { ToasterModule } from 'angular2-toaster';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
-    SigninComponent,
   ],
   providers: [
     {
