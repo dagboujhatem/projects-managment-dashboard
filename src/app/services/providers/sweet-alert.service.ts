@@ -4,7 +4,7 @@ import {SweetAlertService} from 'angular-sweetalert-service';
 @Injectable({
   providedIn: 'root'
 })
-export class SSweetAlertService {
+export class SweetAlert {
 
   constructor(private alertService: SweetAlertService) { }
 
