@@ -35,4 +35,14 @@ export class UsersService {
     return this.httpClient.delete(`${this.baseUrl}/users/${id}`);
   }
 
+  getUserProfile()
+  {
+    return this.httpClient.get(`${this.baseUrl}/profil`);
+  }
+
+  updateUserProfile(payload: any)
+  {
+    return this.httpClient.put(`${this.baseUrl}/profil`, payload);
+  }
+
 }

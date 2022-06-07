@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ProfilRoutingModule } from './profil-routing.module';
 import { ProfilComponent } from './profil.component';
-
+import {
+  IconModule,
+} from '@coreui/icons-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +14,9 @@ import { ProfilComponent } from './profil.component';
   ],
   imports: [
     CommonModule,
-    ProfilRoutingModule
+    ProfilRoutingModule,
+    ReactiveFormsModule,
+    IconModule,
   ]
 })
 export class ProfilModule { }
