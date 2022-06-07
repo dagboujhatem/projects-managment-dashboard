@@ -123,6 +123,7 @@ export const routes: Routes = [
       },
       { path: 'chef-equipe', loadChildren: () => import('./views/chef-equipe/chef-equipe.module').then(m => m.ChefEquipeModule) },
       { path: 'agents', loadChildren: () => import('./views/agents/agents.module').then(m => m.AgentsModule) },
+      { path: 'profil', loadChildren: () => import('./views/profil/profil.module').then(m => m.ProfilModule) },
       { path: 'projects', loadChildren: () => import('./views/projects/projects.module').then(m => m.ProjectsModule) },
       { path: 'taches', loadChildren: () => import('./views/taches/taches.module').then(m => m.TachesModule) },
     ],
