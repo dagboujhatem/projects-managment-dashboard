@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/api/users.service';
+import { UsersService } from '../../../../services/api/users.service';
 // import { SweetAlert } from '../../services/providers/sweet-alert.service';
 
 @Component({
