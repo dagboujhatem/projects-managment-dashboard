@@ -46,10 +46,10 @@ export class UpdateComponent implements OnInit {
   
   onSubmit(){
     this.submitted = true;
-    if(this.userId.invalid){
+    if(this.userForm.invalid){
       return;
     }
-    this.userService.updateUserById(this.userId, this.userId.value).subscribe(
+    this.userService.updateUserById(this.userId, this.userForm.value).subscribe(
       (response:any) => {
         this.router.navigate(['/agents'])
       },

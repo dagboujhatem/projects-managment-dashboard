@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                    <div class="card-header"><strong>Modifier un agent</strong> </div>
+                    <div class="card-header"><strong>Modifier mon profil</strong> </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
@@ -60,13 +60,13 @@
                   <!--  Button retour & submit -->
                   <div class="row">
                     <div class="offset-sm-5 col-sm-3 offset-md-7 col-md-2">
-                      <a routerLink="/chef-equipe" class="btn btn-primary btn-pill btn-block">
+                      <a routerLink="/dashboard" class="btn btn-primary btn-pill btn-block">
                         <c-icon name="cil-arrow-left"></c-icon> Retour
                       </a>
                     </div>
                     <div class="col-sm-3 col-md-2 form-group form-actions">
                         <button type="submit" class="btn btn-success btn-pill btn-block">
-                          <c-icon name="cil-check-circle"></c-icon> Ajouter
+                          <c-icon name="cil-check-circle"></c-icon> Modifier
                         </button>
                     </div>
                   </div>
