@@ -1,1 +1,78 @@
-<p>create works!</p>
+<div class="fade-in">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                    <div class="card-header"><strong>Ajouter un agent</strong> </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nom">Nom:</label>
+                                    <input class="form-control"formControlName="firstName" id="nom" type="text"
+                                     placeholder="Saisissez le nom ici"
+                                    [ngClass]="{ 'is-invalid': submitted && userForm.get('firstName').errors }">
+                                    <div *ngIf="submitted && userForm.get('firstName').errors" class="invalid-feedback d-block">
+                                        <div *ngIf="userForm.get('firstName').errors.required">Le champ nom est obligatoire.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="prenom">Prénom:</label>
+                                    <input class="form-control" formControlName="lastName" id="prenom" type="text"
+                                     placeholder="Saisissez le prénom ici"
+                                    [ngClass]="{ 'is-invalid': submitted && userForm.get('lastName').errors }">
+                                    <div *ngIf="submitted && userForm.get('lastName').errors" class="invalid-feedback d-block">
+                                        <div *ngIf="userForm.get('lastName').errors.required">Le champ prénom est obligatoire.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input class="form-control" formControlName="email" id="email" type="text"
+                                        placeholder="Saisissez l'e-mail ici"
+                                        [ngClass]="{ 'is-invalid': submitted && userForm.get('email').errors }">
+                                    <div *ngIf="submitted && userForm.get('email').errors" class="invalid-feedback d-block">
+                                        <div *ngIf="userForm.get('email').errors.required">Le champ adresse e-mail est obligatoire.</div>
+                                        <div *ngIf="userForm.get('email').errors.email">Le champ e-mail doit être une adresse e-mail
+                                            valide.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="password">Mot de passe:</label>
+                                    <input class="form-control" formControlName="password" id="password" type="password"
+                                        placeholder="Saisissez le mot de passe ici"
+                                        [ngClass]="{ 'is-invalid': submitted && userForm.get('password').errors }">
+                                    <div *ngIf="submitted && userForm.get('password').errors" class="invalid-feedback d-block">
+                                        <div *ngIf="userForm.get('password').errors.required">Le champ mot de passe est obligatoire.
+                                        </div>
+                                        <div *ngIf="userForm.get('password').errors.minlength">Le mot de passe doit être au moins de 6
+                                            caractères.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  <!--  Button retour & submit -->
+                  <div class="row">
+                    <div class="offset-sm-5 col-sm-3 offset-md-7 col-md-2">
+                      <a routerLink="/agents" class="btn btn-primary btn-pill btn-block">
+                        <c-icon name="cil-arrow-left"></c-icon> Retour
+                      </a>
+                    </div>
+                    <div class="col-sm-3 col-md-2 form-group form-actions">
+                        <button type="submit" class="btn btn-success btn-pill btn-block">
+                          <c-icon name="cil-check-circle"></c-icon> Ajouter
+                        </button>
+                    </div>
+                  </div>
+                  <!-- / Button retour & submit-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

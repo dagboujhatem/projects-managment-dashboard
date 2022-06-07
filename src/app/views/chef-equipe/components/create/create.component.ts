@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
     this.userForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required]),
+      role: new FormControl('ROLE_CHEF_EQUIPE', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });

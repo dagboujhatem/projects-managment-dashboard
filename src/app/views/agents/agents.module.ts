@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {
+  IconModule,
+} from '@coreui/icons-angular';
 import { AgentsRoutingModule } from './agents-routing.module';
 import { AgentsComponent } from './components/agents/agents.component';
 import { CreateComponent } from './components/create/create.component';
@@ -18,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AgentsRoutingModule,
     ReactiveFormsModule,
+    IconModule,
   ]
 })
 export class AgentsModule { }
