@@ -5,7 +5,7 @@ import { ChefEquipeRoutingModule } from './chef-equipe-routing.module';
 import { ChefEquipeComponent } from './components/chef-equipe/chef-equipe.component';
 import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { UpdateComponent } from './components/update/update.component';
   ],
   imports: [
     CommonModule,
-    ChefEquipeRoutingModule
+    ChefEquipeRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class ChefEquipeModule { }

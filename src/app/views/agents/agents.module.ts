@@ -5,6 +5,7 @@ import { AgentsRoutingModule } from './agents-routing.module';
 import { AgentsComponent } from './components/agents/agents.component';
 import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UpdateComponent } from './components/update/update.component';
   ],
   imports: [
     CommonModule,
-    AgentsRoutingModule
+    AgentsRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AgentsModule { }
