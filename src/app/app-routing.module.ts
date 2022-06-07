@@ -8,6 +8,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { AuthGuard } from './services/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -66,6 +67,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    // canActivate: [AuthGuard],
     data: {
       title: 'Home',
     },
@@ -158,6 +160,10 @@ export const routes: Routes = [
             (m) => m.OperatorDashboardModule
           ),
       },
+      { path: 'chef-equipe', loadChildren: () => import('./views/chef-equipe/chef-equipe.module').then(m => m.ChefEquipeModule) },
+      { path: 'agents', loadChildren: () => import('./views/agents/agents.module').then(m => m.AgentsModule) },
+      { path: 'projects', loadChildren: () => import('./views/projects/projects.module').then(m => m.ProjectsModule) },
+      { path: 'taches', loadChildren: () => import('./views/taches/taches.module').then(m => m.TachesModule) },
     ],
   },
 ];
@@ -172,4 +178,4 @@ export const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

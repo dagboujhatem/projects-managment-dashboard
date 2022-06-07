@@ -77,9 +77,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 
 // Import routing module
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './view/signin/signin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToasterModule } from 'angular2-toaster';
 
 @NgModule({
   imports: [
@@ -111,7 +113,9 @@ import { SigninComponent } from './view/signin/signin.component';
     BsDropdownModule.forRoot(),
     // ToastrModule.forRoot(),
     // ToastContainerModule,
-    FormModule,
+    FormModule,    
+    HttpClientModule,
+    ToasterModule
   ],
   exports: [SharedModule],
 
