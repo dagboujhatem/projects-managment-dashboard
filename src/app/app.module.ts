@@ -73,8 +73,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToasterModule } from 'angular2-toaster';
+import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
+import { ResponseInterceptorService } from './services/interceptors/response-interceptor.service';
 
 @NgModule({
   imports: [
@@ -123,6 +125,16 @@ import { ToasterModule } from 'angular2-toaster';
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptorService,
+      multi: true
     },
     IconSetService,
   ],

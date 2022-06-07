@@ -34,7 +34,7 @@ export class LoginComponent {
     this.authservice.login(this.loginForm.value).subscribe(
       (response: any) => {
         this.toasterService.pop("success", "Bienvenue", response.message);
-        this.authservice.setToken(response.token);
+        this.authservice.setToken(response?.result?.token);
         this.router.navigate(["/dashboard"]);
       },
       (error: any) => {
