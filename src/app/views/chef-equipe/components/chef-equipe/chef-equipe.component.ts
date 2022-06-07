@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../../../services/api/users.service';
-// import { SweetAlert } from '../../services/providers/sweet-alert.service';
+import { SweetAlertService } from '../../../../services/providers/sweet-alert.service';
 
 @Component({
   selector: 'app-chef-equipe',
@@ -10,7 +10,7 @@ import { UsersService } from '../../../../services/api/users.service';
 export class ChefEquipeComponent implements OnInit {
   userData = [];
   constructor(private userService: UsersService,
-    /*private sweetAlertService: SweetAlert*/) { }
+    private sweetAlertService: SweetAlertService) { }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -19,16 +19,18 @@ export class ChefEquipeComponent implements OnInit {
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       (response: any) => { this.userData = response?.result; },
-      (error) => { });
+      (error:any) => { });
   }
 
-  deleteUser(userId) {
-    // this.sweetAlertService.confirmDeleteMessage().then((result) => {
-    //   // delete the user from rest api
-    //   this.userService.deleteUserById(userId).subscribe(
-    //     (response: any) => { this.getAllUsers(); },
-    //     (error) => { });
-    // }).catch(() => { });
+  deleteUser(userId:any) {
+    this.sweetAlertService.confirmDeleteMessage().then((result) => {
+      if (result.value) {
+        // delete the user from rest api
+        this.userService.deleteUserById(userId).subscribe(
+          (response: any) => { this.getAllUsers(); },
+          (error:any) => { });
+      }
+    }).catch((error:any) => { });
   }
 
 }

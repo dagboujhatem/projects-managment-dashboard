@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
-import {SweetAlertService} from 'angular-sweetalert-service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SweetAlert {
+export class SweetAlertService {
 
-  constructor(private alertService: SweetAlertService) { }
+  constructor() { }
 
   confirmDeleteMessage(){
-    const options = {
-      title: 'Êtes-vous sûr?',
-      text: 'Voulez-vous vraiment supprimer cette enregistrement?',
-      type: 'warning',
+    return Swal.fire({
+      title: `Êtes-vous sûr?`,
+      text: `Voulez-vous vraiment supprimer cette enregistrement?`,
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4dbd74',
       cancelButtonColor: '#f86c6b',
-      confirmButtonText: '<i class="fa fa-check" aria-hidden="true"></i> Oui, supprimez-le',
-      cancelButtonText: '<i class="fa fa-times" aria-hidden="true"></i> Non, annuler'
-    };
-   return this.alertService.confirm(options);
+      confirmButtonText: `<i class="fa fa-check" aria-hidden="true"></i> Oui, supprimez-le`,
+      cancelButtonText: `<i class="fa fa-times" aria-hidden="true"></i> Non, annuler`
+    });
   }
 }
