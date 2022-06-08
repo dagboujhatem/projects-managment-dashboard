@@ -27,7 +27,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Gestion des tâches',
-    url: '/taches',
+    url: '/taches/projects',
     icon: 'cil-tags'
   },
   // {

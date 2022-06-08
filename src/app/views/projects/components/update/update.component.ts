@@ -11,13 +11,13 @@ import { ProjectService } from '../../../../services/api/project.service';
 export class UpdateComponent implements OnInit {
   projectForm: FormGroup;
   submitted = false;
-  prjectId: any;
+  projectId: any;
   constructor(private projectService: ProjectService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.prjectId = this.activatedRoute.snapshot.params['id']
+    this.projectId = this.activatedRoute.snapshot.params['id']
     this.projectForm = new FormGroup({
       code: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -31,7 +31,7 @@ export class UpdateComponent implements OnInit {
   }
 
   loadProjectDetails(){
-    this.projectService.getProjectById(this.prjectId).subscribe(
+    this.projectService.getProjectById(this.projectId).subscribe(
       (response:any) => { 
         this.projectForm.patchValue(response.result); 
       }
@@ -43,7 +43,7 @@ export class UpdateComponent implements OnInit {
     if (this.projectForm.invalid) {
         return;
     }
-    this.projectService.updateProjectById(this.prjectId, this.projectForm.value).subscribe(
+    this.projectService.updateProjectById(this.projectId, this.projectForm.value).subscribe(
       (response:any) => {
         this.router.navigate(['/projects'])
        },
