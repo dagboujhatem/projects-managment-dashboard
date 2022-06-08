@@ -18,8 +18,12 @@ export class ChefEquipeComponent implements OnInit {
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
-      (response: any) => { this.userData = response?.result; },
+      (response: any) => { this.filterChefEquipe(response?.result); },
       (error:any) => { });
+  }
+
+  filterChefEquipe(array:any){
+    this.userData = array.filter(item=> item.role == 'ROLE_CHEF_EQUIPE');
   }
 
   deleteUser(userId:any) {

@@ -19,8 +19,12 @@ export class AgentsComponent implements OnInit {
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
-      (response: any) => { this.userData = response?.result; },
+      (response: any) => { this.filterAgents(response?.result); },
       (error:any) => { });
+  }
+
+  filterAgents(array:any){
+    this.userData = array.filter(item=> item.role == 'ROLE_AGENT');
   }
 
   deleteUser(userId:any) {
