@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/api/auth.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginComponent {
   });
 
   constructor(
-    private toasterService: ToasterService,
+    private toasterService: ToastrService,
     private authservice: AuthService,
     private router: Router
   ) {}
@@ -33,12 +33,12 @@ export class LoginComponent {
     }
     this.authservice.login(this.loginForm.value).subscribe(
       (response: any) => {
-        this.toasterService.pop("success", "Bienvenue", response.message);
+        // this.toasterService.success("Bienvenue", response.message);
         this.authservice.setToken(response?.result?.token);
         this.router.navigate(["/dashboard"]);
       },
       (error: any) => {
-        this.toasterService.pop("error", "Erreur", error.error.message);
+        this.toasterService.error("Erreur", error.error.message);
       }
     );
   }

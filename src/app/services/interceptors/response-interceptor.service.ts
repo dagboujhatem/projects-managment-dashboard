@@ -1,7 +1,7 @@
 import { HttpInterceptor, HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
+import { ToastrService } from 'ngx-toastr';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import {catchError} from 'rxjs/operators';
 export class ResponseInterceptorService implements HttpInterceptor {
 
   constructor(private router: Router,
-    private toasterService: ToasterService) { }
+    private toasterService: ToastrService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       return next.handle(request).pipe(
@@ -21,7 +21,7 @@ export class ResponseInterceptorService implements HttpInterceptor {
           if (error.status === 401) {
             // reomve localStorage data
             localStorage.clear();
-            this.toasterService.pop("info", "La session a été expiré.",
+            this.toasterService.info("La session a été expiré.",
             'Votre session a été expiré. Merci de refaire le login pour accéder à votre espace.');
             // redirect to the login route
             this.router.navigate(['/login']);

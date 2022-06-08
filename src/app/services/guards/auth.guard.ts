@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../api/auth.service';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { AuthService } from '../api/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(public router: Router,
     private authService: AuthService,
-    private toasterService: ToasterService,
+    private toasterService: ToastrService,
     ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
       if (!isexpired) {
         return true
       } else {
-        this.toasterService.pop("info", "La session a été expiré.",
+        this.toasterService.info("La session a été expiré.",
         'Votre session a été expiré. Merci de refaire le login pour accéder à votre espace.');
         localStorage.removeItem('token');
         localStorage.removeItem('avatar');

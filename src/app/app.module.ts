@@ -68,13 +68,12 @@ import {
 
 // 3rd party
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToasterModule } from 'angular2-toaster';
 import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
 import { ResponseInterceptorService } from './services/interceptors/response-interceptor.service';
 
@@ -106,11 +105,10 @@ import { ResponseInterceptorService } from './services/interceptors/response-int
     PerfectScrollbarModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    // ToastrModule.forRoot(),
-    // ToastContainerModule,
+    ToastrModule.forRoot(),
+    ToastContainerModule,
     FormModule,    
     HttpClientModule,
-    ToasterModule
   ],
   exports: [SharedModule],
 
