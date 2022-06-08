@@ -1,1 +1,55 @@
-<p>create works!</p>
+<div class="fade-in">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+                    <div class="card-header"><strong>Ajouter une tâche</strong> </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="code">Code:</label>
+                                    <input class="form-control" formControlName="code" id="code" type="text"
+                                        placeholder="Saisissez le code ici"
+                                        [ngClass]="{ 'is-invalid': submitted && taskForm.get('code').errors }">
+                                    <div *ngIf="submitted && taskForm.get('code').errors"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="taskForm.get('code').errors.required">Le champ code est
+                                            obligatoire.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="libelle">Libelle:</label>
+                                    <input class="form-control" formControlName="libelle" id="libelle" type="text"
+                                        row="3" placeholder="Saisissez la libelle ici"
+                                        [ngClass]="{ 'is-invalid': submitted && taskForm.get('libelle').errors }">
+                                    <div *ngIf="submitted && taskForm.get('libelle').errors"
+                                        class="invalid-feedback d-block">
+                                        <div *ngIf="taskForm.get('libelle').errors.required">Le champ libelle
+                                            est obligatoire.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  Button retour & submit -->
+                    <div class="row">
+                        <div class="offset-sm-5 col-sm-3 offset-md-7 col-md-2">
+                            <a [routerLink]="['/taches/project', projectId]" class="btn btn-primary btn-pill btn-block">
+                                <c-icon name="cil-arrow-left"></c-icon> Retour
+                            </a>
+                        </div>
+                        <div class="col-sm-3 col-md-2 form-group form-actions">
+                            <button type="submit" class="btn btn-success btn-pill btn-block">
+                                <c-icon name="cil-check-circle"></c-icon> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                    <!-- / Button retour & submit-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
