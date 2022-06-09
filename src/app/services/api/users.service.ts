@@ -37,12 +37,12 @@ export class UsersService {
 
   getUserProfile()
   {
-    return this.httpClient.get(`${this.baseUrl}/profil`);
+    return this.httpClient.get(`${this.baseUrl}/users/profil`);
   }
 
   updateUserProfile(payload: any)
   {
-    return this.httpClient.put(`${this.baseUrl}/profil`, payload);
+    return this.httpClient.put(`${this.baseUrl}/users/profil`, payload);
   }
 
 }
