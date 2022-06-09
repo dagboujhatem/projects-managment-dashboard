@@ -39,7 +39,7 @@ export class AgentsComponent implements OnInit {
             this.getAllUsers(); 
           },
           (error:any) => {
-            this.toasterService.error("Erreur", error.error.message);
+            this.toasterService.error(error.error.message);
           });
       }
     }).catch((error:any) => { });

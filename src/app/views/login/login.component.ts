@@ -38,7 +38,7 @@ export class LoginComponent {
         this.router.navigate(["/dashboard"]);
       },
       (error: any) => {
-        this.toasterService.error("Erreur", error.error.message);
+        this.toasterService.error(error.error.message);
       }
     );
   }
