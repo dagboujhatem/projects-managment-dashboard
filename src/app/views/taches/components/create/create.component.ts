@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from '../../../../services/api/project.service';
+import { TaskService } from '../../../../services/api/task.service';
 
 @Component({
   selector: 'app-create',
@@ -12,7 +12,7 @@ export class CreateComponent implements OnInit {
   taskForm: FormGroup;
   submitted = false;
   projectId:any;
-  constructor(private projectService: ProjectService,
+  constructor(private taskService: TaskService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -21,6 +21,7 @@ export class CreateComponent implements OnInit {
     this.taskForm = new FormGroup({
       code: new FormControl('', [Validators.required]),
       libelle: new FormControl('', [Validators.required]),
+      project: new FormControl(this.projectId, [Validators.required]),
     });
   }
 
@@ -29,7 +30,7 @@ export class CreateComponent implements OnInit {
     if (this.taskForm.invalid) {
         return;
     }
-    this.projectService.createProject(this.taskForm.value).subscribe(
+    this.taskService.createTask(this.taskForm.value).subscribe(
       (response:any) => {
         this.router.navigate(['/taches/project', this.projectId])
        },

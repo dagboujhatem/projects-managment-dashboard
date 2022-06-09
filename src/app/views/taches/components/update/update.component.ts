@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from '../../../../services/api/project.service';
+import { TaskService } from '../../../../services/api/task.service';
 
 @Component({
   selector: 'app-update',
@@ -13,7 +13,7 @@ export class UpdateComponent implements OnInit {
   submitted = false;
   projectId:any;
   taskId:any;
-  constructor(private projectService: ProjectService,
+  constructor(private taskService: TaskService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -26,8 +26,9 @@ export class UpdateComponent implements OnInit {
     });
     this.loadTaskData();
   }
+
   loadTaskData() {
-    this.projectService.getProjectById(this.taskId).subscribe(
+    this.taskService.getTaskById(this.taskId).subscribe(
       (response:any) => { 
         this.taskForm.patchValue(response.result); 
       }
@@ -39,7 +40,7 @@ export class UpdateComponent implements OnInit {
     if (this.taskForm.invalid) {
         return;
     }
-    this.projectService.createProject(this.taskForm.value).subscribe(
+    this.taskService.updateTaskById(this.taskId, this.taskForm.value).subscribe(
       (response:any) => {
         this.router.navigate(['/taches/project', this.projectId])
        },

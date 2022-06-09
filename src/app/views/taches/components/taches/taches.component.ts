@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectService } from '../../../../services/api/project.service';
+import { TaskService } from '../../../../services/api/task.service';
 import { SweetAlertService } from '../../../../services/providers/sweet-alert.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { SweetAlertService } from '../../../../services/providers/sweet-alert.se
 export class TachesComponent implements OnInit {
   taskData = [];
   projectId:any;
-  constructor(private projectService: ProjectService,
+  constructor(private taskService: TaskService,
     private sweetAlertService: SweetAlertService,
     private activatedRoute: ActivatedRoute) { }
 
@@ -21,7 +21,7 @@ export class TachesComponent implements OnInit {
   }
 
   getAllTasks() {
-    this.projectService.getAllProjects().subscribe(
+    this.taskService.getAllTasks(this.projectId).subscribe(
       (response: any) => { this.taskData = response?.result; },
       (error:any) => { });
   }
@@ -29,10 +29,12 @@ export class TachesComponent implements OnInit {
   deleteTask(taskId:any) {
     this.sweetAlertService.confirmDeleteMessage().then((result) => {
       if (result.value) {
-        // delete the project from rest api
-        this.projectService.deleteProjectById(taskId).subscribe(
+        // delete the task from rest api
+        this.taskService.deleteTaskById(taskId).subscribe(
           (response: any) => { this.getAllTasks(); },
-          (error:any) => { });
+          (error:any) => { 
+            this.getAllTasks();
+          });
       }
     }).catch((error:any) => { });
   }

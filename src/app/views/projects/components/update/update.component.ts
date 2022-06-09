@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CountryService } from '../../../../services/api/country.service';
 import { ProjectService } from '../../../../services/api/project.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class UpdateComponent implements OnInit {
   projectForm: FormGroup;
   submitted = false;
   projectId: any;
+  countries = [];
   constructor(private projectService: ProjectService,
+    private countryService:CountryService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -27,13 +30,22 @@ export class UpdateComponent implements OnInit {
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
     });
+    this.getAllCountries();
     this.loadProjectDetails();
+  }
+
+  getAllCountries(){
+    this.countryService.getAllCountries().subscribe(
+      (response: any) => { this.countries = response?.result; },
+      (error:any) => { });
   }
 
   loadProjectDetails(){
     this.projectService.getProjectById(this.projectId).subscribe(
       (response:any) => { 
-        this.projectForm.patchValue(response.result); 
+        const patch = response.result;
+        patch['pays'] = response.result.pays.id
+        this.projectForm.patchValue(patch); 
       }
     );
   }
