@@ -53,4 +53,22 @@ export class AuthService {
     return Math.floor(new Date().getTime()/1000)>=decoded.exp
   }
 
+  getAuthRole()
+  {
+    const token = this.getToken();
+    if(token){
+      const decoded:any= jwt_decode(token);
+      if(decoded.authorities.length>0)
+      {
+        const firstRole = decoded.authorities[0]?.authority;
+        return firstRole;
+      }else {
+        return null;
+      }
+      
+    }else {
+      return null;
+    }
+  }
+
 }

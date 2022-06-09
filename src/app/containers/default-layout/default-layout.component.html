@@ -13,7 +13,7 @@
     }">
   </c-sidebar-brand>
   <!-- <img src="./assets/img/tt-logo.png" alt="" style="width:75%; margin:auto"> -->
-  <c-sidebar-nav [navItems]="navItems" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="sidebar?.minimized"
+  <c-sidebar-nav [navItems]="navItems | async" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="sidebar?.minimized"
     dropdownMode="closeInactive"></c-sidebar-nav>
   <c-sidebar-minimizer cSidebarMinimize="sidebar"></c-sidebar-minimizer>
 </c-sidebar>

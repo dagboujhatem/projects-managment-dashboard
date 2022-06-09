@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/api/auth.service';
+import { SideBarService } from '../../services/providers/side-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
   constructor(
     private toasterService: ToastrService,
     private authservice: AuthService,
+    private sideBarService: SideBarService,
     private router: Router
   ) {}
 
@@ -35,6 +37,7 @@ export class LoginComponent {
       (response: any) => {
         this.toasterService.success(response.message);
         this.authservice.setToken(response?.result?.token);
+        this.sideBarService.reloadNaavigationMenu();
         this.router.navigate(["/dashboard"]);
       },
       (error: any) => {

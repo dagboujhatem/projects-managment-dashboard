@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { SideBarService } from '../../services/providers/side-bar.service';
 
 import { navItems } from './_nav';
 
@@ -9,11 +10,13 @@ import { navItems } from './_nav';
 export class DefaultLayoutComponent {
   @HostBinding('class.c-app') cAppClass = true;
 
-  public navItems = navItems;
+  public navItems;
 
   public perfectScrollbarConfig = {
     suppressScrollX: true,
   };
 
-  constructor() {}
+  constructor(private sideBarService: SideBarService) {
+    this.navItems = this.sideBarService.navItems;
+  }
 }
