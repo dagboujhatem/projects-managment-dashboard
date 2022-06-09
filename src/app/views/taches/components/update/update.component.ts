@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TaskService } from '../../../../services/api/task.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class UpdateComponent implements OnInit {
   projectId:any;
   taskId:any;
   constructor(private taskService: TaskService,
+    private toasterService: ToastrService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -42,8 +44,11 @@ export class UpdateComponent implements OnInit {
     }
     this.taskService.updateTaskById(this.taskId, this.taskForm.value).subscribe(
       (response:any) => {
+        this.toasterService.success(response.message);
         this.router.navigate(['/taches/project', this.projectId])
        },
-      (error:any) => { });
+      (error:any) => {
+        this.toasterService.error("Erreur", error.error.message);
+      });
   }
 }

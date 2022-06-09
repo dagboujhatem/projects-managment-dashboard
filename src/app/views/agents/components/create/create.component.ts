@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../../../services/api/users.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class CreateComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
   constructor(private userService: UsersService,
+    private toasterService: ToastrService,
     private router:Router) { }
 
   ngOnInit(): void {
@@ -31,9 +33,12 @@ export class CreateComponent implements OnInit {
     }
     this.userService.createUser(this.userForm.value).subscribe(
       (response:any) => {
+        this.toasterService.success(response.message);
         this.router.navigate(['/agents'])
        },
-      (error:any) => { });
+      (error:any) => {
+        this.toasterService.error("Erreur", error.error.message);
+      });
   }
 
 }

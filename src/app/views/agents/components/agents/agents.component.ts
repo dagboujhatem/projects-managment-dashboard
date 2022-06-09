@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../../../services/api/users.service';
 import { SweetAlertService } from '../../../../services/providers/sweet-alert.service';
 
@@ -11,6 +12,7 @@ export class AgentsComponent implements OnInit {
 
   userData = [];
   constructor(private userService: UsersService,
+    private toasterService: ToastrService,
     private sweetAlertService: SweetAlertService) { }
 
   ngOnInit(): void {
@@ -32,8 +34,13 @@ export class AgentsComponent implements OnInit {
       if (result.value) {
         // delete the user from rest api
         this.userService.deleteUserById(userId).subscribe(
-          (response: any) => { this.getAllUsers(); },
-          (error:any) => { });
+          (response: any) => {
+            this.toasterService.success(response.message);
+            this.getAllUsers(); 
+          },
+          (error:any) => {
+            this.toasterService.error("Erreur", error.error.message);
+          });
       }
     }).catch((error:any) => { });
   }

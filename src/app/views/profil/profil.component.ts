@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../services/api/users.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class ProfilComponent implements OnInit {
   submitted = false;
   userId:any;
   constructor(private userService: UsersService,
+    private toasterService: ToastrService,
     private router:Router) { }
 
   ngOnInit(): void {
@@ -49,9 +51,12 @@ export class ProfilComponent implements OnInit {
     }
     this.userService.updateUserProfile(this.userForm.value).subscribe(
       (response:any) => {
+        this.toasterService.success(response.message);
         this.router.navigate(['/dashboard'])
       },
-      (error:any) => { });
+      (error:any) => {
+        this.toasterService.error("Erreur", error.error.message);
+      });
   }
 
 }

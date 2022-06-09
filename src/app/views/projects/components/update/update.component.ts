@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CountryService } from '../../../../services/api/country.service';
 import { ProjectService } from '../../../../services/api/project.service';
 
@@ -16,6 +17,7 @@ export class UpdateComponent implements OnInit {
   countries = [];
   constructor(private projectService: ProjectService,
     private countryService:CountryService,
+    private toasterService: ToastrService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -57,9 +59,12 @@ export class UpdateComponent implements OnInit {
     }
     this.projectService.updateProjectById(this.projectId, this.projectForm.value).subscribe(
       (response:any) => {
+        this.toasterService.success(response.message);
         this.router.navigate(['/projects'])
        },
-      (error:any) => { });
+      (error:any) => { 
+        this.toasterService.error("Erreur", error.error.message);
+      });
   }
 
 }

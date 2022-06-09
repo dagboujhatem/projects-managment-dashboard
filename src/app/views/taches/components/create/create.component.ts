@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TaskService } from '../../../../services/api/task.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class CreateComponent implements OnInit {
   submitted = false;
   projectId:any;
   constructor(private taskService: TaskService,
+    private toasterService: ToastrService,
     private router:Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -32,9 +34,12 @@ export class CreateComponent implements OnInit {
     }
     this.taskService.createTask(this.taskForm.value).subscribe(
       (response:any) => {
+        this.toasterService.success(response.message);
         this.router.navigate(['/taches/project', this.projectId])
        },
-      (error:any) => { });
+      (error:any) => {
+        this.toasterService.error("Erreur", error.error.message);
+      });
   }
 
 }

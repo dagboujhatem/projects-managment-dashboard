@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TaskService } from '../../../../services/api/task.service';
 import { SweetAlertService } from '../../../../services/providers/sweet-alert.service';
 
@@ -13,6 +14,7 @@ export class TachesComponent implements OnInit {
   projectId:any;
   constructor(private taskService: TaskService,
     private sweetAlertService: SweetAlertService,
+    private toasterService: ToastrService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -31,9 +33,12 @@ export class TachesComponent implements OnInit {
       if (result.value) {
         // delete the task from rest api
         this.taskService.deleteTaskById(taskId).subscribe(
-          (response: any) => { this.getAllTasks(); },
+          (response: any) => { 
+            this.getAllTasks(); 
+            this.toasterService.success(response.message);
+          },
           (error:any) => { 
-            this.getAllTasks();
+            this.toasterService.error("Erreur", error.error.message);
           });
       }
     }).catch((error:any) => { });
