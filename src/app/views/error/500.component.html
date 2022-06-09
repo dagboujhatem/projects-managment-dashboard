@@ -3,26 +3,13 @@
     <c-col md="6">
       <div class="clearfix">
         <h1 class="float-left display-3 mr-4">500</h1>
-        <h4 class="pt-3">Houston, we have a problem!</h4>
+        <h4 class="pt-3">Oops, nous avons un problème!</h4>
         <p class="text-muted">
-          The page you are looking for is temporarily unavailable.
+          La page que vous recherchez est temporairement indisponible.
         </p>
       </div>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="c-icon cil-magnifying-glass"></i>
-          </span>
-        </div>
-        <input cInput
-          id="prependedInput"
-          size="16"
-          type="text"
-          placeholder="What are you looking for?"
-        />
-        <span class="input-group-append">
-          <button cButton color="info">Search</button>
-        </span>
+      <div class="col-12">
+        <button cButton color="info" routerLink="/dashboard">Allez vers la page d'accueil</button>
       </div>
     </c-col>
   </c-row>
