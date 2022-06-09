@@ -38,7 +38,12 @@ export class LoginComponent {
         this.router.navigate(["/dashboard"]);
       },
       (error: any) => {
-        this.toasterService.error(error.error.message);
+        console.log(error);
+        if(error.status == 401){
+          this.toasterService.error("E-mail ou mot de passe incorrect.");
+        }else{
+          this.toasterService.error(error.error.message);
+        }
       }
     );
   }

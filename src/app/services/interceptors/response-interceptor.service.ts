@@ -18,7 +18,7 @@ export class ResponseInterceptorService implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError((error: HttpErrorResponse) => {
           // Unauthenticated User error
-          if (error.status === 401) {
+          if (error.status === 401 && !request.url.endsWith('/auth/login')) {
             // reomve localStorage data
             localStorage.clear();
             this.toasterService.info("La session a été expiré.",
