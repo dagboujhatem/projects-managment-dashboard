@@ -44,7 +44,7 @@ export class UpdateComponent implements OnInit {
     this.projectService.getProjectById(this.projectId).subscribe(
       (response:any) => { 
         const patch = response.result;
-        patch['pays'] = response.result.pays.id
+        patch['pays'] = response.result.pays.id;
         this.projectForm.patchValue(patch); 
       }
     );
