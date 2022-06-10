@@ -1,71 +1,11 @@
 <div class="fade-in">
   <c-card>
-    <c-card-body>
+    <c-card-body class="p-0">
       <c-row>
-        <c-col sm="5">
-          <h4 class="card-title mb-0">Traffic</h4>
-          <div class="small text-muted">November 2019</div>
-        </c-col>
-        <c-col sm="7" class="d-none d-md-block">
-          <c-button-toolbar class="float-right">
-            <c-button-group class="mx-3">
-              <button cButton color="secondary" variant="outline" [(ngModel)]="radioModel" btnRadio="Day"
-                id="option1">Day</button>
-              <button cButton color="secondary" variant="outline" [(ngModel)]="radioModel" btnRadio="Month"
-                id="option2">Month</button>
-              <button cButton color="secondary" variant="outline" [(ngModel)]="radioModel" btnRadio="Year"
-                id="option3">Year</button>
-            </c-button-group>
-            <button cButton color="primary">
-              <c-icon name="cil-cloud-download"></c-icon>
-            </button>
-          </c-button-toolbar>
+        <c-col sm="12">
+          <img src="assets/img/welcome.jpg" alt="Welcome back" class="img-fluid">
         </c-col>
       </c-row>
-      <div class="c-chart-wrapper" style="height:300px;margin-top:40px;" [@.disabled]="true">
-        <canvas cNoZoneBaseChart class="chart" [datasets]="mainChart.Data" [labels]="mainChart.labels"
-          [options]="mainChart.options" [colors]="mainChart.colors" [chartType]="mainChart.type">
-        </canvas>
-      </div>
     </c-card-body>
-    <c-card-footer>
-      <c-row class="text-center">
-        <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
-          <div class="text-muted">Visits</div>
-          <strong>29.703 Users (40%)</strong>
-          <c-progress size="xs" class="mt-2">
-            <c-progress-bar color="success" [value]="40"></c-progress-bar>
-          </c-progress>
-        </c-col>
-        <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
-          <div class="text-muted">Unique</div>
-          <strong>24.093 Users (20%)</strong>
-          <c-progress size="xs" class="mt-2">
-            <c-progress-bar color="info" [value]="20"></c-progress-bar>
-          </c-progress>
-        </c-col>
-        <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
-          <div class="text-muted">Pageviews</div>
-          <strong>78.706 Views (60%)</strong>
-          <c-progress size="xs" class="mt-2">
-            <c-progress-bar color="warning" [value]="60"></c-progress-bar>
-          </c-progress>
-        </c-col>
-        <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
-          <div class="text-muted">New Users</div>
-          <strong>22.123 Users (80%)</strong>
-          <c-progress size="xs" class="mt-2">
-            <c-progress-bar color="danger" [value]="80"></c-progress-bar>
-          </c-progress>
-        </c-col>
-        <c-col sm="12" [md]="true" class="mb-sm-2 mb-0">
-          <div class="text-muted">Bounce Rate</div>
-          <strong>40.15%</strong>
-          <c-progress size="xs" class="mt-2">
-            <c-progress-bar [value]="40"></c-progress-bar>
-          </c-progress>
-        </c-col>
-      </c-row>
-    </c-card-footer>
   </c-card>
 </div>
